@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Basic LAN Network Simulation</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>Basic LAN</h1>
+            <p>Computer Networks Simulation</p>
+        </header>
+
+
+        <!-- Network Topology -->
+
+        <section class="card">
+
+            <h2>Network Topology</h2>
+
+            <div class="network">
+
+                <!-- PC1 -->
+
+                <div class="device" id="pc1">
+
+                    <div class="computer-icon">
+                        💻
+                    </div>
+
+                    <h3>PC1</h3>
+
+                    <p>
+                        IP: 192.168.1.10
+                    </p>
+
+                    <p>
+                        MAC: 00:11:22:33:44:10
+                    </p>
+
+                    <span class="port">
+                        Fa0/1
+                    </span>
+
+                </div>
+
+
+                <div class="connection">
+
+                    <div class="line" id="line1"></div>
+
+                    <span>
+                        Ethernet
+                    </span>
+
+                </div>
+
+
+                <!-- Switch -->
+
+                <div class="device switch" id="switch">
+
+                    <div class="switch-icon">
+                        🔀
+                    </div>
+
+                    <h3>SW1</h3>
+
+                    <p>
+                        Ethernet Switch
+                    </p>
+
+                    <span class="port">
+                        Fa0/1
+                    </span>
+
+                    <span class="port">
+                        Fa0/2
+                    </span>
+
+                </div>
+
+
+                <div class="connection">
+
+                    <div class="line" id="line2"></div>
+
+                    <span>
+                        Ethernet
+                    </span>
+
+                </div>
+
+
+                <!-- PC2 -->
+
+                <div class="device" id="pc2">
+
+                    <div class="computer-icon">
+                        💻
+                    </div>
+
+                    <h3>PC2</h3>
+
+                    <p>
+                        IP: 192.168.1.20
+                    </p>
+
+                    <p>
+                        MAC: 00:11:22:33:44:20
+                    </p>
+
+                    <span class="port">
+                        Fa0/2
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Control Panel -->
+
+        <section class="card">
+
+            <h2>Simulation Controls</h2>
+
+            <div class="controls">
+
+                <button onclick="startSimulation()">
+                    ▶ Start Simulation
+                </button>
+
+                <button onclick="nextStep()">
+                    ➜ Next Step
+                </button>
+
+                <button onclick="resetSimulation()">
+                    ↻ Reset
+                </button>
+
+            </div>
+
+            <div class="progress-container">
+
+                <div id="progress"></div>
+
+            </div>
+
+            <p id="stepText">
+                Ready to start simulation.
+            </p>
+
+        </section>
+
+
+        <!-- Ethernet Frame -->
+
+        <section class="card">
+
+            <h2>Ethernet Frame</h2>
+
+            <div class="frame" id="ethernetFrame">
+
+                <div>
+                    <strong>Source MAC</strong>
+                    <br>
+                    <span id="sourceMac">--</span>
+                </div>
+
+                <div>
+                    <strong>Destination MAC</strong>
+                    <br>
+                    <span id="destinationMac">--</span>
+                </div>
+
+                <div>
+                    <strong>Payload</strong>
+                    <br>
+                    <span id="payload">--</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ARP Table -->
+
+        <section class="card">
+
+            <h2>ARP Table</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>IP Address</th>
+                        <th>MAC Address</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="arpTable">
+
+                    <tr>
+                        <td colspan="2">
+                            No ARP entries
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- MAC Table -->
+
+        <section class="card">
+
+            <h2>Switch MAC Address Table</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>MAC Address</th>
+                        <th>Switch Port</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="macTable">
+
+                    <tr>
+                        <td colspan="2">
+                            MAC table is empty
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- Simulation Output -->
+
+        <section class="card">
+
+            <h2>Simulation Output</h2>
+
+            <div id="console" class="console">
+
+                <div>
+                    System ready...
+                </div>
+
+                <div>
+                    Click "Start Simulation" to begin.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Ping Result -->
+
+        <section class="card">
+
+            <h2>Ping Result</h2>
+
+            <div id="pingResult" class="ping">
+
+                Waiting for simulation...
+
+            </div>
+
+        </section>
+
+
+        <!-- Final Result -->
+
+        <section class="card">
+
+            <h2>Application Test Result</h2>
+
+            <div class="results">
+
+                <div>
+                    Ethernet Frame Simulation
+                    <span id="test1">WAITING</span>
+                </div>
+
+                <div>
+                    MAC Address Learning
+                    <span id="test2">WAITING</span>
+                </div>
+
+                <div>
+                    ARP
+                    <span id="test3">WAITING</span>
+                </div>
+
+                <div>
+                    ICMP Ping
+                    <span id="test4">WAITING</span>
+                </div>
+
+                <div>
+                    Switch Forwarding
+                    <span id="test5">WAITING</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            <p>
+                Computer Networks - Basic LAN Simulation
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

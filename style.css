@@ -1,0 +1,562 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f4f7fb;
+
+    color: #1f2937;
+
+    min-height: 100vh;
+
+}
+
+
+.container {
+
+    width: 90%;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    padding: 30px 0;
+
+}
+
+
+header {
+
+    background: #ffffff;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    margin-bottom: 25px;
+
+    border-left: 6px solid #2563eb;
+
+}
+
+
+header h1 {
+
+    font-size: 36px;
+
+    color: #111827;
+
+    margin-bottom: 8px;
+
+}
+
+
+header p {
+
+    color: #6b7280;
+
+    font-size: 17px;
+
+}
+
+
+.card {
+
+    background: white;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+
+}
+
+
+.card h2 {
+
+    margin-bottom: 20px;
+
+    color: #1e3a8a;
+
+}
+
+
+/* =========================
+   NETWORK TOPOLOGY
+========================= */
+
+.network {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    padding: 35px 10px;
+
+    overflow-x: auto;
+
+}
+
+
+.device {
+
+    min-width: 210px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    border: 2px solid #2563eb;
+
+    border-radius: 12px;
+
+    background: #eff6ff;
+
+    transition: 0.3s;
+
+}
+
+
+.device h3 {
+
+    margin: 10px 0;
+
+    font-size: 22px;
+
+}
+
+
+.device p {
+
+    font-size: 13px;
+
+    margin: 6px 0;
+
+}
+
+
+.computer-icon,
+.switch-icon {
+
+    font-size: 45px;
+
+}
+
+
+.switch {
+
+    border-color: #7c3aed;
+
+    background: #f5f3ff;
+
+}
+
+
+.port {
+
+    display: inline-block;
+
+    background: #1e293b;
+
+    color: white;
+
+    padding: 5px 10px;
+
+    border-radius: 5px;
+
+    font-size: 12px;
+
+    margin: 5px;
+
+}
+
+
+.connection {
+
+    text-align: center;
+
+    min-width: 120px;
+
+}
+
+
+.line {
+
+    height: 5px;
+
+    background: #94a3b8;
+
+    border-radius: 5px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.connection span {
+
+    font-size: 12px;
+
+    color: #64748b;
+
+}
+
+
+/* Active network connection */
+
+.line.active {
+
+    background: #22c55e;
+
+    box-shadow: 0 0 10px #22c55e;
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.controls {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+
+button {
+
+    border: none;
+
+    padding: 12px 22px;
+
+    border-radius: 7px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+}
+
+
+button:hover {
+
+    background: #1d4ed8;
+
+}
+
+
+button:nth-child(2) {
+
+    background: #7c3aed;
+
+}
+
+
+button:nth-child(3) {
+
+    background: #64748b;
+
+}
+
+
+.progress-container {
+
+    height: 10px;
+
+    background: #e5e7eb;
+
+    border-radius: 10px;
+
+    margin-top: 20px;
+
+    overflow: hidden;
+
+}
+
+
+#progress {
+
+    width: 0%;
+
+    height: 100%;
+
+    background: #22c55e;
+
+    transition: width 0.4s;
+
+}
+
+
+#stepText {
+
+    margin-top: 15px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================
+   ETHERNET FRAME
+========================= */
+
+.frame {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+
+    gap: 10px;
+
+}
+
+
+.frame > div {
+
+    padding: 20px;
+
+    background: #eff6ff;
+
+    border: 1px solid #bfdbfe;
+
+    border-radius: 8px;
+
+    text-align: center;
+
+}
+
+
+.frame span {
+
+    display: block;
+
+    margin-top: 10px;
+
+    font-family: monospace;
+
+    color: #1d4ed8;
+
+}
+
+
+/* =========================
+   TABLES
+========================= */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+
+th,
+td {
+
+    padding: 14px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    text-align: left;
+
+}
+
+
+th {
+
+    background: #1e3a8a;
+
+    color: white;
+
+}
+
+
+tr:hover {
+
+    background: #f8fafc;
+
+}
+
+
+/* =========================
+   CONSOLE
+========================= */
+
+.console {
+
+    background: #111827;
+
+    color: #d1fae5;
+
+    min-height: 250px;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    font-family: Consolas, monospace;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    overflow-y: auto;
+
+}
+
+
+.console .info {
+
+    color: #93c5fd;
+
+}
+
+
+.console .success {
+
+    color: #86efac;
+
+}
+
+
+.console .warning {
+
+    color: #fde68a;
+
+}
+
+
+/* =========================
+   PING RESULT
+========================= */
+
+.ping {
+
+    padding: 20px;
+
+    background: #f1f5f9;
+
+    border-radius: 8px;
+
+    font-family: monospace;
+
+}
+
+
+.ping.success {
+
+    background: #dcfce7;
+
+    color: #166534;
+
+    border: 1px solid #86efac;
+
+}
+
+
+/* =========================
+   TEST RESULTS
+========================= */
+
+.results {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+.results div {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border-radius: 7px;
+
+}
+
+
+.results span {
+
+    font-weight: bold;
+
+    color: #64748b;
+
+}
+
+
+.results span.pass {
+
+    color: #16a34a;
+
+}
+
+
+footer {
+
+    text-align: center;
+
+    padding: 30px;
+
+    color: #64748b;
+
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 800px) {
+
+    .network {
+
+        flex-direction: column;
+
+    }
+
+    .connection {
+
+        transform: rotate(90deg);
+
+    }
+
+    .frame {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
